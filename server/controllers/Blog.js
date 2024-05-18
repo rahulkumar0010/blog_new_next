@@ -20,8 +20,11 @@ exports.createBlog = async (req, res) => {
   }
 
   // Generate a slug from the title
-  let timestamp=new Date().getTime()
-  const slug = slugify(title.split(" ").slice(0, 10).join(" ")+`-${timestamp}`, { lower: true, strict: true });
+  let timestamp = new Date().getTime();
+  const slug = slugify(
+    title.split(" ").slice(0, 10).join(" ") + `-${timestamp}`,
+    { lower: true, strict: true }
+  );
   // Create a new blog post with the generated slug
   const blog = new Blog({
     title,
@@ -58,7 +61,10 @@ exports.getAll = async (req, res) => {
         ? { title: { $regex: req.query.q ? req.query.q : "", $options: "i" } }
         : {}),
     };
-    blog = await Blog.find(query).limit(perPage).skip(skip);
+    blog = await Blog.find(query)
+      .sort({ createdAt: -1 })
+      .limit(perPage)
+      .skip(skip);
 
     totalCount = await Blog.countDocuments(query).exec();
   } catch (error) {
