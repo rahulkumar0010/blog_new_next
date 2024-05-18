@@ -20,7 +20,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <div className="pt-2 mt-2">
+      <div className="pt-2 mt-20 lg:mt-2">
         <Link href={"/"} className="font-bold text-lg">
           {`< Go Back`}
         </Link>

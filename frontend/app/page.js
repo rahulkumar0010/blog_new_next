@@ -17,13 +17,13 @@ export default async function Home({ searchParams }) {
         <title>My page title</title>
       </Head>
       <main className="flex min-h-screen flex-col">
-        <div className="flex gap-2 pt-10">
+        <div className="flex flex-wrap w-screen gap-2 pt-10">
           {allPosts && allPosts.data?.blog?.length > 0 ? (
             allPosts.data?.blog?.map((item) => (
               <Link
                 href={`/blog/${item.slug}`}
                 key={item._id}
-                className="max-w-sm w-1/2"
+                className="lg:max-w-sm lg:w-1/2"
               >
                 <Cards
                   image={item.image}
